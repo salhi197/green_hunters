@@ -6,309 +6,8 @@
 <title>The Green Hunters — Micromobility Fleet Service, Bremen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --concrete:#E7E4DA;
-    --concrete-dim:#D9D5C8;
-    --ink:#1E2119;
-    --asphalt:#2B2E28;
-    --asphalt-2:#3A3E35;
-    --amber:#F2A233;
-    --amber-dim:#c9841f;
-    --green:#3E9B67;
-    --green-dim:#2F7A4F;
-    --steel:#7A8073;
-    --white:#FAF9F4;
-    --danger:#C1502E;
-
-    --display: 'Archivo Expanded', sans-serif;
-    --condensed: 'Barlow Condensed', sans-serif;
-    --body: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--concrete);
-    color:var(--ink);
-    font-family:var(--body);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-
-  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
-
-  ::selection{background:var(--amber);color:var(--ink);}
-  :focus-visible{outline:3px solid var(--amber);outline-offset:2px;}
-
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:var(--concrete);
-    border-bottom:2px solid var(--ink);
-  }
-  .nav-inner{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px 28px;max-width:1180px;margin:0 auto;
-  }
-  .logo{
-    font-family:var(--condensed);
-    font-weight:700;
-    font-size:22px;
-    letter-spacing:0.02em;
-    display:flex;align-items:center;gap:10px;
-    text-transform:uppercase;
-  }
-  .logo .dot{
-    width:12px;height:12px;background:var(--green);
-    display:inline-block;
-    border:2px solid var(--ink);
-  }
-  nav ul{list-style:none;display:flex;gap:28px;}
-  nav a{
-    font-family:var(--condensed);
-    font-size:17px;font-weight:600;
-    text-transform:uppercase;letter-spacing:0.04em;
-    padding:6px 2px;border-bottom:2px solid transparent;
-    transition:border-color .15s ease;
-  }
-  nav a:hover{border-color:var(--amber);}
-  .nav-cta{
-    background:var(--ink);color:var(--white);
-    padding:10px 18px;
-    font-family:var(--condensed);font-weight:700;font-size:16px;
-    text-transform:uppercase;letter-spacing:0.03em;
-  }
-  .nav-toggle{display:none;background:none;border:none;cursor:pointer;}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:64px 0 56px;
-    border-bottom:2px solid var(--ink);
-  }
-  .hero-grid{
-    display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:end;
-  }
-  .eyebrow{
-    font-family:var(--mono);font-size:13px;letter-spacing:0.12em;
-    text-transform:uppercase;color:var(--green-dim);
-    display:flex;align-items:center;gap:8px;margin-bottom:18px;
-  }
-  .eyebrow::before{
-    content:"";width:8px;height:8px;background:var(--green);
-    border-radius:50%;
-    box-shadow:0 0 0 3px rgba(62,155,103,0.25);
-  }
-  h1{
-    font-family:var(--display);
-    font-size:clamp(38px,5vw,64px);
-    line-height:1.02;
-    letter-spacing:-0.01em;
-    margin-bottom:22px;
-  }
-  h1 em{
-    font-style:normal;color:var(--green-dim);
-  }
-  .hero p.lede{
-    font-size:18px;color:#4A4D42;max-width:46ch;margin-bottom:28px;
-  }
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
-  .btn{
-    font-family:var(--condensed);font-weight:700;font-size:18px;
-    text-transform:uppercase;letter-spacing:0.03em;
-    padding:14px 24px;
-    border:2px solid var(--ink);
-    display:inline-block;
-    transition:transform .12s ease, box-shadow .12s ease;
-  }
-  .btn-primary{background:var(--amber);color:var(--ink);}
-  .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);}
-  .btn-ghost{background:transparent;color:var(--ink);}
-  .btn-ghost:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);}
-
-  .hero-meta{
-    display:flex;gap:32px;font-family:var(--mono);font-size:13px;color:var(--steel);
-  }
-  .hero-meta strong{
-    display:block;font-family:var(--display);font-size:26px;color:var(--ink);
-  }
-
-  /* ---- fleet board (signature element) ---- */
-  .fleet-board{
-    background:var(--ink);
-    border:2px solid var(--ink);
-    color:var(--white);
-    font-family:var(--mono);
-  }
-  .fb-head{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:12px 16px;border-bottom:1px solid var(--asphalt-2);
-    font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--steel);
-  }
-  .fb-head .live{color:var(--green);display:flex;align-items:center;gap:6px;}
-  .fb-head .live::before{
-    content:"";width:7px;height:7px;background:var(--green);border-radius:50%;
-    animation:pulse 1.6s infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-  .van-row{
-    display:grid;grid-template-columns:56px 1fr auto auto;
-    gap:10px;align-items:center;
-    padding:11px 16px;border-bottom:1px solid var(--asphalt-2);
-    font-size:13px;
-  }
-  .van-row:last-child{border-bottom:none;}
-  .van-id{color:var(--steel);}
-  .van-task{color:var(--white);}
-  .van-loc{color:var(--steel);font-size:12px;}
-  .status{
-    font-size:11px;padding:3px 8px;letter-spacing:0.06em;text-transform:uppercase;
-    border:1px solid currentColor;white-space:nowrap;
-  }
-  .status.charging{color:var(--amber);}
-  .status.transit{color:#6FA8DC;}
-  .status.service{color:var(--green);}
-  .status.standby{color:var(--steel);}
-  .fb-foot{
-    padding:10px 16px;font-size:12px;color:var(--steel);
-    display:flex;justify-content:space-between;
-    border-top:1px solid var(--asphalt-2);
-  }
-
-  /* ---------- SERVICES ---------- */
-  .section{padding:72px 0;border-bottom:2px solid var(--ink);}
-  .section-head{
-    display:flex;justify-content:space-between;align-items:flex-end;
-    margin-bottom:40px;gap:24px;flex-wrap:wrap;
-  }
-  h2{
-    font-family:var(--display);font-size:clamp(28px,3.4vw,42px);
-    letter-spacing:-0.01em;
-  }
-  .section-head p{max-width:40ch;color:#4A4D42;font-size:16px;}
-
-  .services-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
-    border:2px solid var(--ink);
-  }
-  .service-card{
-    padding:28px 24px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
-    background:var(--white);
-    position:relative;
-    transition:background .15s ease;
-  }
-  .services-grid .service-card:nth-child(3n){border-right:none;}
-  .services-grid .service-card:nth-last-child(-n+3){border-bottom:none;}
-  .service-card:hover{background:var(--concrete-dim);}
-  .service-ticket{
-    font-family:var(--mono);font-size:12px;color:var(--steel);
-    letter-spacing:0.06em;margin-bottom:14px;
-    display:flex;justify-content:space-between;
-  }
-  .service-card h3{
-    font-family:var(--condensed);font-size:23px;font-weight:700;
-    text-transform:uppercase;letter-spacing:0.01em;margin-bottom:10px;
-  }
-  .service-card p{font-size:15px;color:#4A4D42;}
-  .service-card .tag{
-    display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;
-    text-transform:uppercase;letter-spacing:0.06em;color:var(--green-dim);
-    border:1px solid var(--green-dim);padding:3px 8px;
-  }
-
-  /* ---------- CAPACITY ---------- */
-  .capacity{background:var(--asphalt);color:var(--white);}
-  .capacity h2{color:var(--white);}
-  .capacity .section-head p{color:#B9BDAF;}
-  .cap-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
-    background:var(--asphalt-2);border:2px solid var(--asphalt-2);
-  }
-  .cap-cell{background:var(--asphalt);padding:26px 20px;}
-  .cap-num{
-    font-family:var(--display);font-size:42px;color:var(--amber);line-height:1;
-  }
-  .cap-label{
-    font-family:var(--mono);font-size:12px;color:var(--steel);
-    text-transform:uppercase;letter-spacing:0.08em;margin-top:8px;
-  }
-  .warehouse-note{
-    margin-top:32px;padding:22px;border:1px solid var(--asphalt-2);
-    display:flex;gap:18px;align-items:flex-start;
-    font-family:var(--body);
-  }
-  .warehouse-note .icon{
-    font-family:var(--mono);color:var(--green);font-size:13px;
-    border:1px solid var(--green);padding:6px 9px;flex-shrink:0;
-  }
-  .warehouse-note p{color:#D3D6C9;font-size:15px;}
-
-  /* ---------- PROCESS ---------- */
-  .process-list{border-top:2px solid var(--ink);}
-  .process-row{
-    display:grid;grid-template-columns:100px 1fr 1.4fr;gap:24px;
-    padding:26px 0;border-bottom:2px solid var(--ink);align-items:center;
-  }
-  .process-row .p-num{
-    font-family:var(--mono);font-size:14px;color:var(--steel);
-  }
-  .process-row h4{
-    font-family:var(--condensed);font-size:24px;font-weight:600;text-transform:uppercase;
-  }
-  .process-row p{color:#4A4D42;font-size:15px;max-width:52ch;}
-
-  /* ---------- CONTACT ---------- */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
-  .contact-info h3{
-    font-family:var(--condensed);font-size:22px;text-transform:uppercase;margin-bottom:14px;
-  }
-  .contact-info p{color:#4A4D42;margin-bottom:22px;max-width:42ch;}
-  .info-row{
-    display:flex;justify-content:space-between;padding:14px 0;
-    border-bottom:1px solid var(--steel);font-family:var(--mono);font-size:14px;
-  }
-  .info-row span:first-child{color:var(--steel);text-transform:uppercase;letter-spacing:0.06em;font-size:12px;}
-
-  form{display:flex;flex-direction:column;gap:16px;}
-  label{
-    font-family:var(--mono);font-size:12px;text-transform:uppercase;
-    letter-spacing:0.06em;color:var(--steel);margin-bottom:6px;display:block;
-  }
-  input,select,textarea{
-    width:100%;padding:12px 14px;border:2px solid var(--ink);
-    background:var(--white);font-family:var(--body);font-size:15px;color:var(--ink);
-  }
-  textarea{resize:vertical;min-height:100px;}
-  input:focus,select:focus,textarea:focus{outline:3px solid var(--amber);outline-offset:0;}
-  .submit-btn{
-    align-self:flex-start;background:var(--ink);color:var(--white);
-    font-family:var(--condensed);font-weight:700;font-size:17px;text-transform:uppercase;
-    letter-spacing:0.03em;padding:14px 26px;border:2px solid var(--ink);cursor:pointer;
-  }
-  .submit-btn:hover{background:var(--green-dim);border-color:var(--green-dim);}
-  .form-note{font-family:var(--mono);font-size:12px;color:var(--steel);}
-
-  footer{padding:28px 0;}
-  .foot-inner{
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-    font-family:var(--mono);font-size:12px;color:var(--steel);
-  }
-
-  @media (max-width:860px){
-    .hero-grid{grid-template-columns:1fr;}
-    .services-grid{grid-template-columns:1fr;}
-    .services-grid .service-card{border-right:none !important;}
-    .services-grid .service-card:not(:last-child){border-bottom:2px solid var(--ink) !important;}
-    .cap-grid{grid-template-columns:1fr 1fr;}
-    .process-row{grid-template-columns:1fr;gap:8px;}
-    .contact-grid{grid-template-columns:1fr;}
-    nav ul{display:none;}
-    .nav-cta{font-size:14px;padding:8px 14px;}
-  }
-</style>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 </head>
 <body>
 
@@ -319,6 +18,7 @@
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#fleet">Fleet</a></li>
+        <li><a href="#areas">Areas</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -453,6 +153,21 @@
   </div>
 </section>
 
+<section class="section" id="areas">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Where we cover</h2>
+      <p>Zones are ranked by priority based on scooter density and how often they need a visit — the lower the number, the more often a van is there.</p>
+    </div>
+    <div id="areas-map"></div>
+    <div class="area-legend">
+      <span><i class="dot dot-amber"></i> Prio 1–3 · daily coverage</span>
+      <span><i class="dot dot-green"></i> Prio 4–6 · regular coverage</span>
+      <span><i class="dot dot-open"></i> Prio 7–8 · coverage on request</span>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="process">
   <div class="wrap">
     <div class="section-head">
@@ -494,7 +209,7 @@
       <div class="info-row"><span>Coverage</span><span>Bremen &amp; surrounding districts</span></div>
       <div class="info-row"><span>Response</span><span>Within 1 business day</span></div>
     </div>
-    <form>
+    <form id="contact-form">
       <div>
         <label for="name">Your name</label>
         <input id="name" type="text" placeholder="Full name" required>
@@ -523,7 +238,7 @@
         <textarea id="details" placeholder="Fleet size, zone, how often you need us"></textarea>
       </div>
       <button type="submit" class="submit-btn">Send Request</button>
-      <span class="form-note">This form doesn't send yet — connect it to your inbox or CRM to go live.</span>
+      <span class="form-note">This form doesn't send yet — hook it up to a route/controller to go live.</span>
     </form>
   </div>
 </section>
@@ -535,10 +250,53 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
-  document.querySelector('form').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('Thanks — this form is a template. Wire it up to your email or CRM to receive real requests.');
+  var areas = [
+    { lat: 53.0645, lng: 8.8036, prio: 1, name: 'Neustadt',      stat: '3 vans stationed · 42 stops this week', tier: 'high' },
+    { lat: 53.1671, lng: 8.6208, prio: 2, name: 'Vegesack',      stat: '2 vans stationed · 26 stops this week', tier: 'high' },
+    { lat: 53.0876, lng: 8.8368, prio: 3, name: 'Schwachhausen', stat: '2 vans stationed · 31 stops this week', tier: 'high' },
+    { lat: 53.1231, lng: 8.7481, prio: 4, name: 'Überseestadt',  stat: '1 van stationed · 18 stops this week',  tier: 'mid' },
+    { lat: 53.1073, lng: 8.7746, prio: 5, name: 'Walle',         stat: '1 van stationed · 15 stops this week',  tier: 'mid' },
+    { lat: 53.0703, lng: 8.8459, prio: 6, name: 'Hastedt',       stat: '1 van stationed · 12 stops this week',  tier: 'mid' },
+    { lat: 53.0937, lng: 8.8073, prio: 7, name: 'Findorff',      stat: 'No van stationed yet · coverage on request', tier: 'open' },
+    { lat: 53.0333, lng: 8.7756, prio: 8, name: 'Obervieland',   stat: 'No van stationed yet · coverage on request', tier: 'open' }
+  ];
+
+  var tierColor = { high: '#F2A233', mid: '#3E9B67', open: '#7A8073' };
+
+  function pinIcon(color) {
+    var svg = '<svg width="30" height="40" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M12 0C6.5 0 2 4.5 2 10c0 7.5 10 20 10 20s10-12.5 10-20C22 4.5 17.5 0 12 0z" ' +
+      'fill="' + color + '" stroke="#1E2119" stroke-width="1.6"/>' +
+      '<circle cx="12" cy="10" r="4" fill="#1E2119"/></svg>';
+    return L.divIcon({
+      html: svg,
+      className: 'area-pin-icon',
+      iconSize: [30, 40],
+      iconAnchor: [15, 38],
+      popupAnchor: [0, -34]
+    });
+  }
+
+  var map = L.map('areas-map', { scrollWheelZoom: false }).setView([53.0850, 8.7900], 11);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  areas.forEach(function (a) {
+    L.marker([a.lat, a.lng], { icon: pinIcon(tierColor[a.tier]) })
+      .addTo(map)
+      .bindPopup(
+        '<div class="map-popup">' +
+        '<div class="map-popup-prio">Prio 0' + a.prio + '</div>' +
+        '<div class="map-popup-name">' + a.name + '</div>' +
+        '<div class="map-popup-stat">' + a.stat + '</div>' +
+        '</div>'
+      );
   });
 </script>
 
