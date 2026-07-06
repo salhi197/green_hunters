@@ -1,0 +1,83 @@
+/* Admin backend — reuses tokens from app.css (loaded alongside this file) */
+
+.admin-body{background:var(--concrete);color:var(--ink);font-family:var(--body);min-height:100vh;}
+.admin-header{
+  background:var(--ink);color:var(--white);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 28px;border-bottom:2px solid var(--ink);
+}
+.admin-header .brand{font-family:var(--condensed);font-weight:700;font-size:20px;text-transform:uppercase;}
+.admin-nav{display:flex;gap:22px;align-items:center;}
+.admin-nav a{
+  color:var(--white);font-family:var(--condensed);font-size:16px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.03em;
+}
+.admin-nav a.active{color:var(--amber);}
+.admin-nav button{
+  background:none;border:1px solid var(--white);color:var(--white);
+  font-family:var(--condensed);font-size:14px;text-transform:uppercase;
+  padding:6px 12px;cursor:pointer;
+}
+.admin-nav button:hover{background:var(--amber);border-color:var(--amber);color:var(--ink);}
+
+.admin-wrap{max-width:1100px;margin:0 auto;padding:36px 28px;}
+.admin-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.admin-top h1{font-family:var(--display);font-size:30px;}
+
+.flash{
+  padding:12px 16px;margin-bottom:20px;font-family:var(--mono);font-size:14px;
+  border:2px solid var(--ink);
+}
+.flash-success{color:var(--green-dim);border-color:var(--green-dim);}
+.flash-error{color:var(--danger);border-color:var(--danger);}
+
+table{width:100%;border-collapse:collapse;border:2px solid var(--ink);background:var(--white);}
+th, td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--ink);font-size:14.5px;}
+th{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;
+  background:var(--ink);color:var(--white);border-bottom:none;
+}
+tr:last-child td{border-bottom:none;}
+td.actions{display:flex;gap:10px;align-items:center;}
+
+.btn-sm{
+  font-family:var(--condensed);font-weight:700;font-size:14px;text-transform:uppercase;
+  padding:6px 12px;border:2px solid var(--ink);background:var(--white);color:var(--ink);
+  cursor:pointer;display:inline-block;
+}
+.btn-sm:hover{background:var(--concrete-dim);}
+.btn-sm.danger{color:var(--danger);border-color:var(--danger);}
+.btn-sm.danger:hover{background:var(--danger);color:var(--white);}
+
+.badge{
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;
+  padding:3px 8px;border:1px solid currentColor;
+}
+.badge-high{color:var(--amber-dim);}
+.badge-mid{color:var(--green-dim);}
+.badge-open{color:var(--steel);}
+
+.admin-form{
+  max-width:560px;background:var(--white);border:2px solid var(--ink);padding:28px;
+}
+.admin-form .field{margin-bottom:18px;}
+.admin-form label{
+  display:block;font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  letter-spacing:0.06em;color:var(--steel);margin-bottom:6px;
+}
+.admin-form input, .admin-form select{
+  width:100%;padding:11px 13px;border:2px solid var(--ink);font-family:var(--body);font-size:15px;
+}
+.admin-form .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.admin-form .error{color:var(--danger);font-size:12.5px;margin-top:4px;font-family:var(--mono);}
+.admin-form .hint{color:var(--steel);font-size:12px;margin-top:4px;}
+
+.login-wrap{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--concrete);
+}
+.login-card{
+  width:100%;max-width:380px;background:var(--white);border:2px solid var(--ink);padding:32px;
+}
+.login-card h1{font-family:var(--display);font-size:26px;margin-bottom:6px;}
+.login-card p{color:var(--steel);font-size:14px;margin-bottom:24px;}
+.login-card .submit-btn{width:100%;margin-top:8px;}
