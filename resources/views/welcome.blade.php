@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 </head>
 <body>
 
@@ -18,7 +17,6 @@
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#fleet">Fleet</a></li>
-        <li><a href="#areas">Areas</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -153,21 +151,6 @@
   </div>
 </section>
 
-<section class="section" id="areas">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Where we cover</h2>
-      <p>Zones are ranked by priority based on scooter density and how often they need a visit — the lower the number, the more often a van is there.</p>
-    </div>
-    <div id="areas-map"></div>
-    <div class="area-legend">
-      <span><i class="dot dot-amber"></i> Prio 1–3 · daily coverage</span>
-      <span><i class="dot dot-green"></i> Prio 4–6 · regular coverage</span>
-      <span><i class="dot dot-open"></i> Prio 7–8 · coverage on request</span>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="process">
   <div class="wrap">
     <div class="section-head">
@@ -250,55 +233,7 @@
   </div>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="{{ asset('js/app.js') }}"></script>
-<script>
-  var areas = [
-    { lat: 53.0645, lng: 8.8036, prio: 1, name: 'Neustadt',      stat: '3 vans stationed · 42 stops this week', tier: 'high' },
-    { lat: 53.1671, lng: 8.6208, prio: 2, name: 'Vegesack',      stat: '2 vans stationed · 26 stops this week', tier: 'high' },
-    { lat: 53.0876, lng: 8.8368, prio: 3, name: 'Schwachhausen', stat: '2 vans stationed · 31 stops this week', tier: 'high' },
-    { lat: 53.1231, lng: 8.7481, prio: 4, name: 'Überseestadt',  stat: '1 van stationed · 18 stops this week',  tier: 'mid' },
-    { lat: 53.1073, lng: 8.7746, prio: 5, name: 'Walle',         stat: '1 van stationed · 15 stops this week',  tier: 'mid' },
-    { lat: 53.0703, lng: 8.8459, prio: 6, name: 'Hastedt',       stat: '1 van stationed · 12 stops this week',  tier: 'mid' },
-    { lat: 53.0937, lng: 8.8073, prio: 7, name: 'Findorff',      stat: 'No van stationed yet · coverage on request', tier: 'open' },
-    { lat: 53.0333, lng: 8.7756, prio: 8, name: 'Obervieland',   stat: 'No van stationed yet · coverage on request', tier: 'open' }
-  ];
-
-  var tierColor = { high: '#F2A233', mid: '#3E9B67', open: '#7A8073' };
-
-  function pinIcon(color) {
-    var svg = '<svg width="30" height="40" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M12 0C6.5 0 2 4.5 2 10c0 7.5 10 20 10 20s10-12.5 10-20C22 4.5 17.5 0 12 0z" ' +
-      'fill="' + color + '" stroke="#1E2119" stroke-width="1.6"/>' +
-      '<circle cx="12" cy="10" r="4" fill="#1E2119"/></svg>';
-    return L.divIcon({
-      html: svg,
-      className: 'area-pin-icon',
-      iconSize: [30, 40],
-      iconAnchor: [15, 38],
-      popupAnchor: [0, -34]
-    });
-  }
-
-  var map = L.map('areas-map', { scrollWheelZoom: false }).setView([53.0850, 8.7900], 11);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
-    maxZoom: 18
-  }).addTo(map);
-
-  areas.forEach(function (a) {
-    L.marker([a.lat, a.lng], { icon: pinIcon(tierColor[a.tier]) })
-      .addTo(map)
-      .bindPopup(
-        '<div class="map-popup">' +
-        '<div class="map-popup-prio">Prio 0' + a.prio + '</div>' +
-        '<div class="map-popup-name">' + a.name + '</div>' +
-        '<div class="map-popup-stat">' + a.stat + '</div>' +
-        '</div>'
-      );
-  });
-</script>
 
 </body>
 </html>
